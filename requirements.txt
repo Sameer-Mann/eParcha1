@@ -1,5 +1,7 @@
 django
+django-heroku
 django-qr-code
 fpdf
 PyPDF2
 twilio
+gunicorn
