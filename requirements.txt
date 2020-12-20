@@ -1,0 +1,5 @@
+django
+django-qr-code
+fpdf
+PyPDF2
+twilio

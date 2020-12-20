@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+  <meta charset="utf-8">
+  <title>eParcha</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'eParcha/home/css/styles.css' %}">
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <section class="colored-section" id="title">
+
+    <div class="container-fluid">
+
+      <!-- Nav Bar -->
+
+      <nav class="navbar navbar-expand-lg navbar-dark">
+
+        <a class="navbar-brand" href="">eParcha</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#footer">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#About">About</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+
+
+      <!-- Title -->
+
+      <div class="row">
+
+        <div class="col-lg-6">
+          <h1 class="big-heading">Digitizing Health Care Solutions.</h1>
+          {% if request.user.is_authenticated %}
+           <a href = "{% url 'index' %}"> <button type="button" class="btn btn-outline-light btn-lg download-button" href = "{% url 'index' %}">Prescribe</button> </a>
+             
+          {% else %} 
+            <a href = "{% url 'login' %}"> <button type="button" class="btn btn-outline btn-lg download-button" >SignIn</button> </a>
+            <a href = "{% url 'register' %}" > <button type="button" class="btn btn-outline-light btn-lg download-button" href = >SignUp</button> </a>
+
+          {% endif%} 
+          
+        </div>
+
+        <div class="col-lg-6">
+          <img class="title-image" src='{% static "eParcha/home/images/newPhone.png" %}' alt="iphone-mockup">
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Features -->
+
+  <section class="white-section" id="features">
+
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-check-circle fa-4x"></i>
+          <h3 class="feature-title">Easy to use.</h3>
+          <p>So easy to use,Everything availible on your SmartPhone.</p>
+        </div>
+
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-bullseye fa-4x"></i>
+          <h3 class="feature-title">Cutting edge Technology</h3>
+          <p>Providing latest automation technology to make life easier.</p>
+        </div>
+
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-heart fa-4x"></i>
+          <h3 class="feature-title">We Care</h3>
+          <p>Our user's satisfaction is what we thrive for.</p>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+
+  <!-- Testimonials -->
+
+  <section class="colored-section" id="testimonials">
+
+    <div id="testimonial-carousel" class="carousel slide" data-ride="false">
+      <div class="carousel-inner">
+        <div class="carousel-item active container-fluid">
+          <h2 class="testimonial-text">YOUR PRESCRIPTION IN YOUR SMARTPHONE</h2>
+          <img class="testimonial-image" src='{% static "eParcha/images/mail.png" %}' alt="dog-profile">
+        </div>
+        <div class="carousel-item container-fluid">
+          <h2 class="testimonial-text">VOICE DRIVEN PRESCRIPTION SYSTEM.</h2>
+          <img class="testimonial-image" src='{% static "eParcha/images/voice.png" %}' alt="lady-profile">
+
+        </div>
+
+        <div class="carousel-item container-fluid">
+          <h2 class="testimonial-text">QR ENCODED DIGITAL PRESCRIPTION</h2>
+          <img class="testimonial-image" src='{% static "eParcha/images/qr_code.png" %}' alt="lady-profile">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+
+  </section>
+
+
+
+  <!-- Pricing -->
+
+  <section class="white-section" id="About">
+    <div class="container-fluid">
+
+    <h2 class="testimonial-text">A Fast and Automated Interface For Handling Patient's Prescriptions</h2>
+    <p>Forget Worries and Carry your e-Prescriptions with you anytime anywhere.</p>
+    <p>Simple and efficient Prescriptions managing application.</p>
+    <p>Voice Driven Prescription System.</p>
+    <p>QR code encoded Prescriptions</p>
+
+    </div>
+  </section>
+
+
+  <!-- Call to Action -->
+
+
+  <!-- Footer -->
+
+  <footer class="colored-section" id="footer">
+    <div class="container-fluid">
+      <i class="social-icon fab fa-facebook-f"></i>
+      <i class="social-icon fab fa-twitter"></i>
+      <i class="social-icon fab fa-instagram"></i>
+      <i class="social-icon fas fa-envelope"></i>
+      <p>© Copyright 2018 eParcha</p>
+    </div>
+  </footer>
+</body>
+
+</html>

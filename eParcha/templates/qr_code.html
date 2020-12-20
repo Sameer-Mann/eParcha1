@@ -1,0 +1,57 @@
+{% load qr_code %}
+<html>
+    <body>
+        <p>Sending Your Messages and Email</p>
+        <a href="/"><button class="btn btn-large btn-primary">Home</button></a>
+    </body>
+    <script type="text/javascript">
+        function makePostRequest(form11,url){
+            return new Promise((resolve,reject)=>{
+                var req = new XMLHttpRequest();
+                var fd = new FormData(form11),data;
+                try{
+                    req.open("POST",url,true);
+                }catch(err){
+                    console.warn("couldn't complete Request"+err.message);
+                    reject(err);
+                }
+                try{
+                    req.send(fd);
+                }catch(err){
+                    console.warn(err);
+                }
+                req.onreadystatechange = function() {
+                    if(this.status==200 && this.readyState == 4){
+                        return resolve(this.responseText);
+                    }
+                    if(this.status == 404){
+                        return reject(this.responseText);
+                    }
+                }
+            });
+        }
+        function htmlToElement(html) {
+            var template = document.createElement('template');
+            html = html.trim(); // Never return a text node of whitespace as the result
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
+        var url = "{% qr_url_from_text text size=8 version=10 image_format='png' %}";
+        var base_url = location.protocol + '//' + document.domain + ':' + location.port;
+        var data = "{{data}}";
+        data = Array.from(data.split(' ')).join("#");
+        window.addEventListener('DOMContentLoaded',()=>{
+            function fun(){
+                let form = htmlToElement(`<form>{% csrf_token %}<input name='url' value=${base_url+url}><input name='data' value=${data}/></form>`);
+                let purl = base_url + "/send_sms/";
+                makePostRequest(form,purl).then((data)=>{
+                    let p = document.createElement("h1");
+                    p.innerText = data
+                    let body = document.getElementsByTagName("body")[0];
+                    body.appendChild(p);
+                });
+            }
+            setTimeout(fun,2000);
+        });
+    </script>
+</html>

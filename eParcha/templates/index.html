@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'eParcha/register/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'eParcha/register/css/style.css' %}">
+</head>
+<body  style = "padding-top: 0px; " >
+    <nav class="navbar navbar-light bg-light" style = "padding-top: 0px; " >
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Hello, {{name}}</span>
+        <a href="{% url 'logout' %}">
+            <span class="navbar-text">
+                Logout
+            </span>
+        </a>
+    </div>
+    
+    
+    </nav>
+    <div class="main" style = "padding-top: 100px; " >
+        <section class="patient">
+            <div class="container">
+                <div class="patient-content">
+                    <form method="POST" id="patient-form" class="patient-form" action="/index/">
+                        {% csrf_token %}
+                        <h2 class="form-title">Patient Details</h2>
+                        <div class="buttonInside">
+                            <input id="1" type="text" class="form-input" name="name" id="name" placeholder="Patient Name"/>
+                            <button type="button" id="2"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="buttonInside">
+                            <input id="3" type="text" class="form-input" name="age" id="age" placeholder="age"/>
+                            <button type="button" id="4"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="buttonInside">
+                            <input id="5" type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
+                            <button type="button" id="6"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="buttonInside">
+                            <input id="7" type="text" class="form-input" name="disease" id="disease" placeholder="disease"/>
+                            <button type="button" id="8"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="buttonInside">
+                            <input id="9" type="text" class="form-input" name="medicine" id="Medicine" placeholder="Prescribed Medicine"/>
+                            <button type="button" id="10"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="buttonInside">
+                            <input id="11" type="text" class="form-input" name="docComments" id="docComments" placeholder="Doctor comments"/>
+                            <button type="button" id="12"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="buttonInside">
+                            <input class="form-input" type="number" name="mobile_no" id="13" placeholder="Enter The Patients Mobile No"/>
+                            <button type="button" id="14"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                        </div>
+                        <div>
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Send"/>
+                        </div>
+                        <input type="text" name="mcin" hidden id="mcin" value="{{mcin}}"/>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'eParcha/register/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'eParcha/register/js/main.js' %}"></script>
+    <script type="text/javascript">
+        var SpeechRecognition = window.webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        var target;
+        recognition.onresult = function(event) {
+            let current = event.resultIndex;
+            let transcript = event.results[current][0].transcript;
+            let Content = "";
+            Content += transcript;
+            target.value = Content;
+            recognition.stop()
+        };
+        recognition.onspeechend = function() {
+            console.log("stopped");
+        }
+        var a=document.querySelectorAll('div.buttonInside>button');
+        for(var i=0;i<a.length;i++){
+            a[i].addEventListener('click',function(e){
+                // console.log(this);
+                target = document.getElementById(this.id-1);
+                recognition.start()
+                // console.log(target);
+          });
+        }
+    </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
