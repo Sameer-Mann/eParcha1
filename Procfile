@@ -1,1 +1,1 @@
-web: gunicorn eParcha.wsgi --log-file -
+cd .. && gunicorn --bind 0.0.0.0:8000 hackathon.wsgi:eParcha
