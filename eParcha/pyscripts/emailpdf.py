@@ -36,18 +36,18 @@ class PDF(FPDF):
         self.cell(0, 10, 'Page ' + str(self.page_no()) + '/{nb}', 0, 0, 'C')
 
 # Instantiation of inherited class
-def body(list):
+def body(data):
     pdf = PDF()
     pdf.alias_nb_pages()
     pdf.add_page()
     pdf.set_font('Times', '', 12)
     pdf.cell(0, 10, '', 0, 1)
     pdf.cell(0, 10, '', 0, 1)
-    pdf.cell(0, 10, 'Patient:  '+list['name'],1,1)
-    pdf.cell(0, 10, 'Age:  '+list['age'],1,1)
-    pdf.cell(0, 10, 'Diagnosis:  '+list['disease'],1,1)
-    pdf.cell(0, 10, "Medicine:  "+list['medicine'],1,1)
-    pdf.cell(0, 10, "E-Mail ID:  "+list['email'],1,1)
+    pdf.cell(0, 10, 'Patient:  '+data['name'],1,1)
+    pdf.cell(0, 10, 'Age:  '+data['age'],1,1)
+    pdf.cell(0, 10, 'Diagnosis:  '+data['disease'],1,1)
+    pdf.cell(0, 10, "Medicine:  "+data['medicine'],1,1)
+    pdf.cell(0, 10, "E-Mail ID:  "+data['email'],1,1)
     pdf.output('test.pdf','F')
     pdfFile = open('test.pdf', 'rb')
     

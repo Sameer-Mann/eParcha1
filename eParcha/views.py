@@ -42,13 +42,14 @@ def send_sms(request):
         fl=True
         url = request.POST['url']
         data = request.POST['data']
-        print(request.POST)
         a = data.split("#")
+        print(data,a)
         d = {}
         for i in range(0,len(a),2):
             if i+1<len(a):
                 d[a[i]] = a[i+1]
-        d["mcin"] = d["mcin"].strip()
+        if "mcin" in d:
+            d["mcin"] = d["mcin"].strip()
         d["url"] = url
         func(d)
         message = client.messages.create(body=f'The url to your prescription is: {url}',from_=os.getenv('MOBILE_NO'),to="+91"+d['mobile_no'])
