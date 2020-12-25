@@ -1,3 +1,3 @@
-# eParcha1
-Made for Execute 2020 Hackathon
-[![Watch the demo]](https://youtu.be/VJCkm1OLw38)
+# eParcha
+A short preview of the app
+[![Watch the video](https://img.youtube.com/vi/VJCkm1OLw38/maxresdefault.jpg)](https://youtu.be/VJCkm1OLw38)
